@@ -50,7 +50,7 @@ class Board
       line.each_with_index do |_, col|
         pos = [row, col]
         if grid_skeleton[row][col] == 1
-          self[pos] = Tile.new("b")
+          self[pos] = Tile.bomb
         else
           neighbor_arr = neighbors(pos)
           bombs = neighbor_arr.inject(0) { |sum, el| grid_skeleton[el[0]][el[1]] + sum }
@@ -66,6 +66,14 @@ class Board
     grid.each_with_index do |row, i|
       puts "#{i} #{row.map(&:to_s).join(" ")}"
     end
+  end
+
+  def flag(pos)
+    self[pos].toggle_flag
+  end
+
+  def reveal(pos)
+
   end
 
   def [](pos)
