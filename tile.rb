@@ -14,4 +14,10 @@ class Tile
   def toggle_flag
     @flagged = !@flagged
   end
+
+  def to_s
+    return @value.to_s if @revealed
+    return "F" if @flagged
+    "*"
+  end
 end

@@ -61,6 +61,13 @@ class Board
     end
   end
 
+  def render
+    puts "  #{(0...num_cols).to_a.join(" ")}"
+    grid.each_with_index do |row, i|
+      puts "#{i} #{row.map(&:to_s).join(" ")}"
+    end
+  end
+
   def [](pos)
     row, col = *pos
     @grid[row][col]
@@ -89,5 +96,5 @@ class Board
   end
 end
 
-# board = Board.from_random(3, 3, 3)
-# p board.grid
+board = Board.from_random(3, 3, 3)
+board.render
