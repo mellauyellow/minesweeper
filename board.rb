@@ -14,6 +14,32 @@ class Board
     @grid = grid
   end
 
+  def neighbors(pos)
+    neighbor_arr = []
+
+    (-1..1).to_a.each do |row|
+      (-1..1).to_a.each do |col|
+         new_pos = [row + pos[0], col + pos[1]]
+         neighbor_arr << new_pos unless new_pos == pos
+       end
+    end
+
+    neighbor_arr
+  end
+
+  def populate_grid
+  end
+
+  def [](pos)
+    row, col = *pos
+    @grid[row][col]
+  end
+
+  def []=(pos, mark)
+    row, col = *pos
+    @grid[row][col] = mark
+  end
+
   private
 
   def self.randomize_bombs(size, bombs)
