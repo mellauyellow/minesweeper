@@ -83,6 +83,14 @@ class Board
     end
   end
 
+  def won?
+    @grid.flatten.each do |tile|
+      return false if !tile.revealed && !tile.bomb?
+    end
+
+    true
+  end
+
   def [](pos)
     row, col = *pos
     @grid[row][col]
