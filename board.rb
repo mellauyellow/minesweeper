@@ -91,6 +91,14 @@ class Board
     true
   end
 
+  def lost?
+    @grid.flatten.each do |tile|
+      return true if tile.revealed && tile.bomb?
+    end
+
+    false
+  end
+
   def [](pos)
     row, col = *pos
     @grid[row][col]
@@ -118,8 +126,3 @@ class Board
     grid
   end
 end
-
-board = Board.from_random(3, 3, 3)
-board.render
-board.reveal([0,0])
-board.render
