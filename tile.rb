@@ -20,6 +20,7 @@ class Tile
   end
 
   def to_s
+    return "_" if @revealed && is_blank?
     return @value.to_s if @revealed
     return "F" if @flagged
     "*"

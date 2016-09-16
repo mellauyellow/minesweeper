@@ -73,7 +73,14 @@ class Board
   end
 
   def reveal(pos)
-
+    if self[pos].is_blank?
+      self[pos].reveal
+      neighbors(pos).each { |neighbor| reveal(neighbor) unless self[neighbor].revealed }
+    elsif self[pos].flagged
+      puts "Cannot reveal flagged tile."
+    else
+      self[pos].reveal
+    end
   end
 
   def [](pos)
@@ -105,4 +112,6 @@ class Board
 end
 
 board = Board.from_random(3, 3, 3)
+board.render
+board.reveal([0,0])
 board.render
